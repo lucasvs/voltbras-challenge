@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy-voltbras
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  node:
+    image: node:13.10.1-alpine3.10
+    volumes:
+      - ./:/var/www
+    working_dir: /var/www
+    command: |
+      sh -c "
+        yarn
+        cp .env.example .env
+        yarn start
+      "
+    expose:
+      - 3000
+    depends_on:
+      - postgres
+    environment:
+      - VIRTUAL_HOST=voltbras-challenge.localhost
+      - VIRTUAL_PORT=8081
+
+  postgres:
+    image: postgres
+    volumes:
+    - ~/.voltbras-challenge/db/data:/var/lib/postgresql/data
+    ports:
+    - 5432
+    environment:
+    - POSTGRES_USER=lucas
+    - POSTGRES_PASSWORD=lucasvoltbras!
+    - POSTGRES_DB=voltbras
+
+  adminer:
+    image: adminer:4.6.2
+    depends_on:
+    - postgres
+    environment:
+    - VIRTUAL_HOST=adminer-voltbras.localhost
+    - VIRTUAL_PORT=8080
