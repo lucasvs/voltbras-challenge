@@ -13,20 +13,12 @@ And then the application and database will be started:
 
 ```shell
 nginx-proxy-voltbras is up-to-date
-voltbras-challenge_postgres_1 is up-to-date
+voltbras-challenge_database_1 is up-to-date
 voltbras-challenge_node_1 is up-to-date
 voltbras-challenge_adminer_1 is up-to-date
 ```
 
 The application will be available on [http://voltbras-challenge.localhost](http://voltbras-challenge.localhost) by default.
-
-## Running the tests
-
-To run the test locally on your machine, you can run:
-
-```bash
-docker-compose run node yarn test
-```
 
 ## Built With
 
