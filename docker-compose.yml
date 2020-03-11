@@ -23,26 +23,18 @@ services:
     expose:
       - 3000
     depends_on:
-      - postgres
+      - database
     environment:
       - VIRTUAL_HOST=voltbras-challenge.localhost
       - VIRTUAL_PORT=8081
 
-  postgres:
-    image: postgres
+  database:
+    image: mongo
+    environment:
+      - MONGO_INITDB_DATABASE=exoplanets
     volumes:
-    - ~/.voltbras-challenge/db/data:/var/lib/postgresql/data
+      - ./init-mongodb.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./mongodb-volume:/data/db
     ports:
-    - 5432
-    environment:
-    - POSTGRES_USER=lucas
-    - POSTGRES_PASSWORD=lucasvoltbras!
-    - POSTGRES_DB=voltbras
-
-  adminer:
-    image: adminer:4.6.2
-    depends_on:
-    - postgres
-    environment:
-    - VIRTUAL_HOST=adminer-voltbras.localhost
-    - VIRTUAL_PORT=8080
+      - 28017
+      - 27017

@@ -6,7 +6,7 @@ export class ArcsecondAPI extends RESTDataSource {
     this.baseURL = process.env.ARCSECOND_API;
   }
 
-  async getExoPlanets(total = 1, limit = 10) {
+  async getExoPlanets(total = 1, limit = 100) {
     const data = await this.get('exoplanets', {
       page: total,
       page_size: limit,

@@ -2,8 +2,13 @@ import { gql } from 'apollo-server';
 
 export const typeDef = gql`
   extend type Query {
-    suitablePlanets(page: Int, page_size: Int, search: String): [Exoplanet]
+    suitablePlanets(page: Int, page_size: Int): [Exoplanet]
   }
+
+  extend type Mutation {
+    installStation(planet_name: String, station_id: Int): [StationPlanets]
+  }
+
   type Exoplanet {
     name: String
     coordinates: ExoplanetCoordinates
@@ -53,4 +58,9 @@ export const typeDef = gql`
     error_min: Float
     bibcode: String
   }
+  type StationPlanets {
+    planet_name: String
+    station_id: Int
+  }
+
 `

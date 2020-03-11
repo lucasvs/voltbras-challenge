@@ -31,7 +31,7 @@ docker-compose run node yarn test
 ## Built With
 
 * [ApolloGraphQl](https://www.apollographql.com/docs/apollo-server/) - Apec-compliant GraphQL server
-* [PostgreSQL](https://www.postgresql.org/) - SQL database
+* [MongoDB](https://www.mongodb.com/) - NoSQL database
 * [Typescript](https://www.typescriptlang.org/) - Typed superset of JavaScript
 * [Jest](https://jestjs.io/) - Delightful JavaScript Testing Framework
 * [Nginx-Proxy](https://github.com/nginx-proxy/nginx-proxy) - Reverse proxy docker container to localhost

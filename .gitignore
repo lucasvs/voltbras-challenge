@@ -32,3 +32,6 @@ lerna-debug.log*
 packages/*/lib
 
 .env
+
+mongo_volume/
+init-mongo.js/
